@@ -88,6 +88,16 @@
                 telError.textContent = "Enter valid mobile number"
         })
 
+        const pwd = document.querySelector('#pwd')
+        const pwdError = document.querySelector('.pwd-error')
+        pwd.addEventListener('input', function(){
+            let pwdRegex = RegExp('^[a-zA-z0-9]{8,}$')
+            if(pwdRegex.test(pwd.value))
+                pwdError.textContent=""
+            else
+                pwdError.textContent = "Not a strong password"
+        })
+
         
         const salary =  document.querySelector('#salary')
         const output = document.querySelector('.output-range')
