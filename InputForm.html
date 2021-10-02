@@ -35,6 +35,7 @@
         <div>
             <label for="tel">tel input type</label>
             <input type="tel" id="tel" name="tel">
+            <error-output class = "tel-error" for = "tel"></error-output>
         </div>
         <div>
             <label for="search">search input type</label>
@@ -55,8 +56,20 @@
         </div>
     </form>
     <script>
-        const email = document.querySelector('#email')
-        const emailError = document.querySelector('.email-error')
+        
+        //used EventListener to check and compare the input with regex pattern
+        const text = document.querySelector('#text') //selected the text id
+        const textError = document.querySelector('.text-error') //selected the text-error class
+        text.addEventListener('input', function(){ //used eventListener to check every input 
+            let nameRegex = RegExp('^[A-Z]{1}[a-z A-Za-z]{2,}$') //used regx patterns for validation
+            if(nameRegex.test(text.value))
+                textError.textContent=""
+            else
+                textError.textContent = "Name is Incorrect"
+        })
+
+        const email = document.querySelector('#email') //selected the email id
+        const emailError = document.querySelector('.email-error')//selected the email-error class
         email.addEventListener('input', function(){
             let emailRegex = RegExp('^[a-zA-Z0-9-_+]+(\\.?[a-zA-Z0-9-_]+)@[a-zA-Z0-9-_]+\\.[a-zA-Z]{2,}(\\.?[a-zA-Z-_]+)$')
             if(emailRegex.test(email.value))
@@ -64,26 +77,18 @@
             else
                 emailError.textContent = "Enter valid email"
         })
-        
-        const pwd = document.querySelector('#pwd')
-        const pwdError = document.querySelector('.pwd-error')
-        pwd.addEventListener('input', function(){
-            let pwdRegex = RegExp('^(?=.*[0-9])(?=.*[A-Za-z])(?=.*[@#$%^&+=]).{8,}$')
-            if(pwdRegex.test(pwd.value))
-                pwdError.textContent=""
+
+        const tel = document.querySelector('#tel') //selected the tel id
+        const telError = document.querySelector('.tel-error')//selected the tel-error class
+        tel.addEventListener('input', function(){
+            let telRegex = RegExp('^[91]+[ ][0-9]{10}$')
+            if(telRegex.test(tel.value))
+                telError.textContent=""
             else
-                pwdError.textContent = "Not a strong password"
+                telError.textContent = "Enter valid mobile number"
         })
+
         
-        const text = document.querySelector('#text')
-        const textError = document.querySelector('.text-error')
-        text.addEventListener('input', function(){
-            let nameRegex = RegExp('^[A-Z]{1}[a-z A-Za-z]{2,}$')
-            if(nameRegex.test(text.value))
-                textError.textContent=""
-            else
-                textError.textContent = "Name is Incorrect"
-        })
         const salary =  document.querySelector('#salary')
         const output = document.querySelector('.output-range')
         output.textContent = salary.value
