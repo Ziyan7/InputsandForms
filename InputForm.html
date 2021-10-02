@@ -12,7 +12,7 @@
         <header class="headerContainer"><h1>Input Form</h1></header>
         <div>
             <label for="text">Type Your Name</label>
-            <input type="text" id="text" name="text" required>
+            <input type="text" id="text" oninput="check()" name="text" required>
             <error-output class = "text-error" for = "text"></error-output>
         </div>
         <div>
@@ -61,13 +61,22 @@
         //used EventListener to check and compare the input with regex pattern
         const text = document.querySelector('#text') //selected the text id
         const textError = document.querySelector('.text-error') //selected the text-error class
-        text.addEventListener('input', function(){ //used eventListener to check every input 
+        // text.addEventListener('input', function(){ //used eventListener to check every input 
+        //     let nameRegex = RegExp('^[A-Z]{1}[a-z A-Za-z]{2,}$') //used regx patterns for validation
+        //     if(nameRegex.test(text.value))
+        //         textError.textContent=""
+        //     else
+        //         textError.textContent = "Name is Incorrect"
+        // })
+        function check(){ //used eventListener to check every input 
             let nameRegex = RegExp('^[A-Z]{1}[a-z A-Za-z]{2,}$') //used regx patterns for validation
             if(nameRegex.test(text.value))
                 textError.textContent=""
             else
                 textError.textContent = "Name is Incorrect"
-        })
+        }
+
+
 
         const email = document.querySelector('#email') //selected the email id
         const emailError = document.querySelector('.email-error')//selected the email-error class
